@@ -1,3 +1,4 @@
+import { TFunction } from "i18next";
 import { DataType, TransactionPayloadType } from "../api/types";
 
 export function transformToArray(data: DataType, statusDefault = "standard") {
@@ -31,19 +32,19 @@ export function valuesUppercase(
 
 export function determineTypePromo(
   promo: number,
-  t: (key: string, options?: unknown) => string
+  t: TFunction
 ): {
   message: string;
   discount: number;
 } {
   if (promo < 10) {
     return {
-      message: t('congratulationsFreeBots', { count: promo }),
+      message: t("congratulationsFreeBots", { count: promo }),
       discount: 0,
     };
   } else {
     return {
-      message: t('congratulationsDiscount', { discount: promo }),
+      message: t("congratulationsDiscount", { discount: promo }),
       discount: promo,
     };
   }

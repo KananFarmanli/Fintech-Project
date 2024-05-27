@@ -282,11 +282,11 @@ canvas {
 }
 
 .sticky {
-  @apply h-[3.5rem] sm:h-[5.7rem] md:h-[7rem] flex z-30 top-0  rounded-bl-[30%] rounded-br-[30%];
+  @apply h-[3.5rem] sm:h-[4.7rem]  flex z-30 top-0  rounded-bl-[30%] rounded-br-[30%];
 }
 
 .header__layer {
-  @apply h-12   sm:h-20 md:h-24  w-full flex justify-center items-center text-white rounded-bl-[33%] rounded-br-[33%];
+  @apply h-12   sm:h-16  w-full flex justify-center items-center text-white rounded-bl-[33%] rounded-br-[33%];
 }
 
 .banner {
@@ -787,4 +787,10 @@ path {
   opacity: 0;
   transition: opacity 0.3s;
   transition: stroke-dashoffset 0.2s linear;
+}
+
+svg{
+  filter: drop-shadow(0 0 .5rem dodgerblue) contrast(2.6);
+  transition: filter 600ms;
+
 }

@@ -32,7 +32,7 @@ export default function useChoosePlan() {
 
   if (isBotError) {
     if ("stack" in botError) {
-      const status = 404
+      const status = 404;
       throw new PatchedError(t("botNotAvailable"), status);
     }
     const status = (botError as PatchedErrorType).status;
@@ -83,7 +83,7 @@ export default function useChoosePlan() {
     const tokenPayload = valuesUppercase(dto);
     try {
       const data = await tokenHandler(tokenPayload).unwrap();
-      localStorage.setItem("token",data.token.token)
+      localStorage.setItem("token", data.token.token);
       setNotification({
         error: false,
         message: t("choosePlanNotificationReady"),

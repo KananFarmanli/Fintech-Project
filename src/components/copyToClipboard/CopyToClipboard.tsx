@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoCopySharp } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
@@ -10,21 +10,21 @@ const CopyToClipboard = () => {
   );
   const [isCopied, setIsCopied] = useState({
     value: true,
-    text:""
+    text: "",
   });
   const { t } = useTranslation();
-  const copyToClipboard = (text: string, value: "token"|"transaction" ) => {
+  const copyToClipboard = (text: string, value: "token" | "transaction") => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
         setIsCopied({
           value: true,
-          text:value
+          text: value,
         });
         setTimeout(() => {
           setIsCopied({
             value: false,
-            text:""
+            text: "",
           });
         }, 2000);
       })
@@ -44,7 +44,11 @@ const CopyToClipboard = () => {
               className="h-full text-base"
               onClick={() => copyToClipboard(textToken, "token")}
             >
-              {isCopied.value && isCopied.text=="token" ? <MdDoneOutline /> : <IoCopySharp />}
+              {isCopied.value && isCopied.text == "token" ? (
+                <MdDoneOutline />
+              ) : (
+                <IoCopySharp />
+              )}
             </button>
           </div>
         </div>
@@ -53,8 +57,15 @@ const CopyToClipboard = () => {
         <p>{t("walletAddress")}:</p>
         <div className="rounded-lg border-[1px] border-blueSection p-1 bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">
           <p>{text}</p>
-          <button className="h-full text-base"  onClick={() => copyToClipboard(text, "transaction")}>
-            {isCopied.value && isCopied.text=="transaction"? <MdDoneOutline /> : <IoCopySharp />}
+          <button
+            className="h-full text-base"
+            onClick={() => copyToClipboard(text, "transaction")}
+          >
+            {isCopied.value && isCopied.text == "transaction" ? (
+              <MdDoneOutline />
+            ) : (
+              <IoCopySharp />
+            )}
           </button>
         </div>
       </div>

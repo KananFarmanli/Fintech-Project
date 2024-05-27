@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -14,14 +13,14 @@ export default function useHeader() {
   }
 
   useEffect(() => {
-    const lastPath = sessionStorage.getItem("lastPath"); 
-    console.log(lastPath,'last path ')
+    const lastPath = sessionStorage.getItem("lastPath");
+    console.log(lastPath, "last path ");
     const currentPath = location.pathname;
     const isHomePage =
       currentPath === "/" && location.hash === "" && location.search === "";
     const isScrollAtTop = window.scrollY === 0;
-    const cameFromSameSite = lastPath && lastPath !== "/"; 
-    
+    const cameFromSameSite = lastPath && lastPath !== "/";
+
     if (isHomePage && isScrollAtTop && !cameFromSameSite) {
       setShowBanner(true);
     } else {
@@ -43,7 +42,7 @@ export default function useHeader() {
   }, [location]);
 
   return {
-    operations:{openMenu},
-    models: { showBanner,isMenuOpen, headerRef },
+    operations: { openMenu },
+    models: { showBanner, isMenuOpen, headerRef },
   };
 }

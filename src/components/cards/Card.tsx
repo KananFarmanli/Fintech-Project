@@ -53,6 +53,7 @@ export default function Card({
         >
           <h1 className="">{title} </h1>
           <p className="info">{content}</p>
+          <div className="flex items-center justify-center gap-3 text-[12px]">
           <button
             onClick={selectHandler}
             disabled={!isAvailable}
@@ -62,6 +63,15 @@ export default function Card({
           >
             {!isAvailable ? t("botNotAvailableBtn") : t("botAvailableBtn")}
           </button>
+          <button
+  
+            className={`bg-red-500 hover:bg-blueSection transition block w-full text-center rounded p-1 mt-1 ${
+              isAvailable || "hover:bg-slate-500 select-none !bg-slate-500 "
+            } `}
+          >
+        link
+          </button>
+        </div>
         </div>
       </div>
     </div>

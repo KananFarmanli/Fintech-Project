@@ -1,4 +1,3 @@
-
 import axios, { AxiosError } from "axios";
 
 export const getHeaders = () => {
@@ -6,7 +5,6 @@ export const getHeaders = () => {
     "Content-type": "application/json",
   };
 };
-
 
 export function handleError(error: AxiosError) {
   if (axios.isCancel(error)) {
@@ -29,4 +27,3 @@ export function handleError(error: AxiosError) {
     },
   };
 }
-

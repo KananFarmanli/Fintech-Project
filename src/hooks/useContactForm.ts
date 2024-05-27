@@ -53,7 +53,7 @@ export default function useContactForm() {
           setLoading(false);
         },
         (error) => {
-          console.error(error.text)
+          console.error(error.text);
           setNotification((prev) => ({
             ...prev,
             error: true,
@@ -66,7 +66,7 @@ export default function useContactForm() {
       );
   };
   return {
-    operations: { register, handleSubmit,onSubmit },
+    operations: { register, handleSubmit, onSubmit },
     models: { loading, errors, formRef },
   };
 }

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useStateProvider } from "../../context/StateProvider";
-import {errorIcon ,successIcon, notifyIcon} from "../../assets/notification/index"
+import {
+  errorIcon,
+  successIcon,
+  notifyIcon,
+} from "../../assets/notification/index";
 
 const Notification = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +47,7 @@ const Notification = () => {
 
   const containerStyle: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
-    transform: ` translateX(${isVisible ? "-50%" : "100%"})`,
+    transform: ` translateX(${isVisible ? "-50%" : "150%"})`,
     transition: "opacity 0.3s ease, transform 0.3s ease",
   };
 

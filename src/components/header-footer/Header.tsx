@@ -18,8 +18,14 @@ export default function Header() {
     <header
       ref={headerRef}
       className={`header glass z-20 w-full sticky 
-      ${ !isMenuOpen || "!rounded-bl-[18%] !rounded-br-[18%] "} 
-      ${ location.pathname == "/" && isMenuOpen? "!h-[300px] " : (location.pathname != "/" && isMenuOpen) ? "!h-[110px]" : ""} 
+      ${!isMenuOpen || "!rounded-bl-[18%] !rounded-br-[18%] "} 
+      ${
+        location.pathname == "/" && isMenuOpen
+          ? "!h-[300px] "
+          : location.pathname != "/" && isMenuOpen
+          ? "!h-[110px]"
+          : ""
+      } 
         `}
     >
       <div
@@ -48,9 +54,11 @@ export default function Header() {
               isMenuOpen ? "flex" : "hidden"
             }`}
           >
-            <ul className={`flex  flex-col sm:flex-row flex-wrap w-full gap-6 sm:gap-4 justify-center items-center text-[10px] md:text-[12px] lg:text-sm  sm:mb-0 
-             ${ location.pathname != "/" || "mb-4"} 
-            `}>
+            <ul
+              className={`flex  flex-col sm:flex-row flex-wrap w-full gap-6 sm:gap-4 justify-center items-center text-[10px] md:text-[12px]   sm:mb-0 
+             ${location.pathname != "/" || "mb-4"} 
+            `}
+            >
               {location.pathname === "/" ? (
                 <>
                   <li data-link="1" className="link reflect">

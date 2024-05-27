@@ -1,15 +1,13 @@
 import { SetStateAction, Dispatch, useEffect, useRef, useState } from "react";
 import { TransactionPayloadType } from "../api/types";
 import { useStateProvider } from "../context/StateProvider";
-import  {determineTypePromo } from "../utils/choosePlan";
+import { determineTypePromo } from "../utils/choosePlan";
 import { useCheckPromoMutation } from "../api/apiSlice";
 import { useTranslation } from "react-i18next";
 type usePromoType = {
   selectedPlan: TransactionPayloadType;
   setSelectedPlan: Dispatch<SetStateAction<TransactionPayloadType>>;
 };
-
-
 
 export default function usePromo({
   selectedPlan,
@@ -20,10 +18,10 @@ export default function usePromo({
   const {
     operations: { setNotification },
   } = useStateProvider();
-  const [discount, setDiscount] =useState(0)
+  const [discount, setDiscount] = useState(0);
   const [trigger, { data, isLoading, isSuccess, error, isError }] =
     useCheckPromoMutation();
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const handlePromoButton = async () => {
     if (promoRef.current && selectedPlan.promo) {
       localStorage.removeItem("promo");
@@ -32,18 +30,18 @@ export default function usePromo({
         promo: "",
       }));
       promoRef.current.value = "";
-      setDiscount(0)
+      setDiscount(0);
       return;
     }
     if (!promoRef.current?.value) return;
     await trigger({ name: promoRef.current?.value });
   };
-
+  // how to correct it
   useEffect(() => {
     if (isSuccess) {
-      if (!data.value) return
-      const promo = determineTypePromo(data.value, t);
-      setDiscount(promo.discount)
+      if (!data!.value) return;
+      const promo = determineTypePromo(data!.value, t);
+      setDiscount(promo.discount);
       setNotification((prev) => ({
         ...prev,
         error: false,
@@ -60,7 +58,15 @@ export default function usePromo({
   }, [isSuccess]);
 
   return {
-    operations: { promoRef, data, isError, isLoading, isSuccess, error,discount },
+    operations: {
+      promoRef,
+      data,
+      isError,
+      isLoading,
+      isSuccess,
+      error,
+      discount,
+    },
     models: { handlePromoButton },
   };
 }

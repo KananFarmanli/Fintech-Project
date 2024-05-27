@@ -1,12 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 
-
 export default function useResizeObserver() {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if(!ref.current) return
+    if (!ref.current) return;
     const observerTarget = ref.current;
     const resizeObserver = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
@@ -26,6 +25,5 @@ export default function useResizeObserver() {
     };
   }, []);
 
-
-  return {ref, size}
+  return { ref, size };
 }

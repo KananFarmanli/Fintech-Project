@@ -1,7 +1,18 @@
-import React from 'react'
-
 export default function LoadingSpinner() {
   return (
-    <div className="lds-default z-30"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  )
+    <div className="lds-default z-30">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 }

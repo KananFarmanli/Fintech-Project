@@ -107,7 +107,19 @@ interface Resources {
     "transactionIsNotFound": "Transaction is not found",
     "invalidToken": "Invalid token",
     "wrongPurchaseAmount": "Wrong purchase amount",
-    "transactionWasAlreadyUsed": "Transaction is already used"
+    "transactionWasAlreadyUsed": "Transaction is already used",
+    "botUsageTitlePart1": "How",
+    "botUsageTitlePart2": "to start",
+    "botUsageTitlePart3": "using",
+    "botUsageTitlePart4": "the bot",
+    "botUsagestepFirtTitle": "Getting Started",
+    "botUsagestepSecondTitle": "Entering the Activation Key",
+    "botUsagestepThirdTitle": "Selecting the Interface Language",
+    "botUsagestepForthTitle": "Ready to Use",
+    "botUsagestepFirtsText": "To get started, click the Start button after following the link to the desired bot. This will allow you to begin the bot activation process.",
+    "botUsagestepSecondText": "Enter the bot's activation key in the appropriate field. This key is necessary to verify your account and activate all bot features.",
+    "botUsagestepThirdText": "Select your preferred interface language from the provided list. This will allow you to use the bot in a language that is convenient for you.",
+    "botUsagestepForthText": "All set! You can now use all the services of this bot. Enjoy the convenience and functionality of our service."
   }
 }
 

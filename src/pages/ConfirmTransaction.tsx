@@ -16,16 +16,15 @@ type Inputs = {
 };
 
 type ErrorData = {
-  message:string
-}
+  message: string;
+};
 
 export default function ConfirmTransaction() {
   const formRef = useRef(null);
   const {
     operations: { setNotification },
   } = useStateProvider();
-  const [purchaseHandler, { isLoading,}] =
-    useGetPurchaseMutation();
+  const [purchaseHandler, { isLoading }] = useGetPurchaseMutation();
   const {
     register,
     handleSubmit,
@@ -52,10 +51,12 @@ export default function ConfirmTransaction() {
     } catch (error: unknown) {
       console.log(error);
       const typedError = error as { status: number; data: ErrorData };
-      if(!typedError.data) return
+      if (!typedError.data) return;
       setNotification({
         error: true,
-        message: `${t(typedError.data.message as keyof Resources["translation"])}: ${typedError.status}`,
+        message: `${t(
+          typedError.data.message as keyof Resources["translation"]
+        )}: ${typedError.status}`,
         success: false,
         visible: true,
       });

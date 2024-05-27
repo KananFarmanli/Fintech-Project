@@ -6,15 +6,15 @@ import { useTranslation } from "react-i18next";
 import { useStateProvider } from "../context/StateProvider";
 import Resources from "../@types/resources";
 
-
 export default function ChoosePlan() {
-
-  const {models:{lang}} = useStateProvider()
+  const {
+    models: { lang },
+  } = useStateProvider();
   const { t } = useTranslation();
   const {
     operations: {
       discount,
-      botData,
+      botData,    
       promoRef,
       isBotSuccess,
       isBotLoading,
@@ -94,7 +94,7 @@ export default function ChoosePlan() {
               </div>
               {promoError && (
                 <p className="text-red-500 text-sm -bottom-6 absolute w-full ml-1 ">
-                 {t("choosePlanPromoNotValid")}
+                  {t("choosePlanPromoNotValid")}
                 </p>
               )}
             </label>
@@ -113,7 +113,7 @@ export default function ChoosePlan() {
                     } `}
                   >
                     <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold leading-10 ">
-                      {t(key as keyof Resources['translation']).toUpperCase()}
+                      {t(key as keyof Resources["translation"]).toUpperCase()}
                     </p>
 
                     <input
@@ -125,7 +125,7 @@ export default function ChoosePlan() {
                     />
                     {isChecked && (
                       <div className="shrink-0 text-white">
-                        <CheckIcon className="h-6 w-6"  />
+                        <CheckIcon className="h-6 w-6" />
                       </div>
                     )}
                   </label>
@@ -152,10 +152,13 @@ export default function ChoosePlan() {
                           $
                         </span>
                         <span className="text-[32px] md:text-[44px] xl:text-[56px] font-semibold leading-10">
-                          {calculatePriceWithDiscount(value as number, discount)}
+                          {calculatePriceWithDiscount(
+                            value as number,
+                            discount
+                          )}
                         </span>
                         <span className="text-[20px] md:text-[24px] xl:text-[32px] font-normal leading-10">
-                          /{t(key as keyof Resources['translation'])}
+                          /{t(key as keyof Resources["translation"])}
                         </span>
                       </div>
                       <input
@@ -193,4 +196,3 @@ export default function ChoosePlan() {
     </motion.div>
   );
 }
-

@@ -12,9 +12,6 @@ import {
 } from "../components/sections";
 
 export default function Home() {
-
-
-
   useEffect(() => {
     AOS.init({ duration: 3000 });
   }, []);
@@ -26,8 +23,7 @@ export default function Home() {
       className="flex flex-col  justify-center items-center w-full py-20"
     >
       <Description />
-   
-      
+
       <AboutCompany />
       <Advantages />
       <HowItWorks />
