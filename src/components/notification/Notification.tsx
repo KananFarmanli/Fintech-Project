@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useStateProvider } from "../../context/StateProvider";
+import { useEffect, useState } from 'react';
+import { useStateProvider } from '../../context/StateProvider';
 import {
   errorIcon,
   successIcon,
   notifyIcon,
-} from "../../assets/notification/index";
+} from '../../assets/notification/index';
 
 const Notification = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +14,7 @@ const Notification = () => {
   } = useStateProvider();
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null;
+    let timeout: any;
 
     if (notification.visible) {
       setIsVisible(true);
@@ -27,7 +27,7 @@ const Notification = () => {
   }, [notification.visible]);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null;
+    let timeout: any;
 
     if (notification.visible && !isVisible) {
       timeout = setTimeout(() => {
@@ -47,8 +47,8 @@ const Notification = () => {
 
   const containerStyle: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
-    transform: ` translateX(${isVisible ? "-50%" : "150%"})`,
-    transition: "opacity 0.3s ease, transform 0.3s ease",
+    transform: ` translateX(${isVisible ? '-50%' : '150%'})`,
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
   };
 
   const actionIcon = notification.error
@@ -58,10 +58,10 @@ const Notification = () => {
     : notifyIcon;
 
   const actionBorder = notification.error
-    ? "border-red-400"
+    ? 'border-red-400'
     : notification.success
-    ? "border-greenSection"
-    : "border-blueSection";
+    ? 'border-greenSection'
+    : 'border-blueSection';
 
   return (
     <div
