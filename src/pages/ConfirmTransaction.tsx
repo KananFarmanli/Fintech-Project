@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Canvas } from "../components";
 import useResizeObserver from "../hooks/useResizeObserver";
 import { motion } from "framer-motion";
-import { vector8, vector9 } from "../assets/home";
+import { vector8 } from "../assets/home";
 import CopyToClipboard from "../components/copyToClipboard/CopyToClipboard";
 import { useTranslation } from "react-i18next";
 import { useGetPurchaseMutation } from "../api/apiSlice";

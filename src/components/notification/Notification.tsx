@@ -14,7 +14,7 @@ const Notification = () => {
   } = useStateProvider();
 
   useEffect(() => {
-    let timeout: number | null;
+    let timeout: NodeJS.Timeout | null;
 
     if (notification.visible) {
       setIsVisible(true);
@@ -27,7 +27,7 @@ const Notification = () => {
   }, [notification.visible]);
 
   useEffect(() => {
-    let timeout: number | null;
+    let timeout: NodeJS.Timeout | null;
 
     if (notification.visible && !isVisible) {
       timeout = setTimeout(() => {
