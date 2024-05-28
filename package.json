@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite",
+    "start": "npx serve -s dist -l 8080",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -29,7 +29,8 @@
     "react-loader-spinner": "^6.1.6",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.2",
-    "react-vertical-timeline-component": "^3.6.0"
+    "react-vertical-timeline-component": "^3.6.0",
+    "server": "^1.0.39"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
