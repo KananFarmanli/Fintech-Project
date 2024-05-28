@@ -33,10 +33,10 @@ export default function useContactForm() {
     if (!formRef.current) return;
     emailjs
       .sendForm(
-        "service_n4om1b6",
-        "template_ofmpv6d",
+        "service_lkyvvz6",
+        "template_dvyrqk9",
         formRef?.current,
-        "M3i8oLVRUMKM6yBjE"
+        "n_9af9inXr012M-ob"
       )
       .then(
         () => {

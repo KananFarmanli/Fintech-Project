@@ -30,6 +30,30 @@ export function valuesUppercase(
   return newObj;
 }
 
+
+export function setToken (token: string) {
+  const expiryTime = new Date().getTime() + 15 * 60 * 1000; 
+  const tokenData = JSON.stringify({ token, expiryTime });
+  localStorage.setItem('authToken', tokenData);
+};
+
+export function getToken (): string | null {
+  const tokenData = localStorage.getItem('authToken');
+  if (!tokenData) {
+    return null;
+  }
+
+  const { token, expiryTime } = JSON.parse(tokenData);
+  const currentTime = new Date().getTime();
+
+  if (currentTime > expiryTime) {
+    localStorage.removeItem('authToken');
+    return null;
+  }
+
+  return token;
+};
+
 export function determineTypePromo(
   promo: number,
   t: TFunction

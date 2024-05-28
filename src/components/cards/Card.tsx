@@ -64,7 +64,7 @@ export default function Card({
             {!isAvailable ? t("botNotAvailableBtn") : t("botAvailableBtn")}
           </button>
           <button
-  
+  disabled={!isAvailable}
             className={`bg-red-500 hover:bg-blueSection transition block w-full text-center rounded p-1 mt-1 ${
               isAvailable || "hover:bg-slate-500 select-none !bg-slate-500 "
             } `}

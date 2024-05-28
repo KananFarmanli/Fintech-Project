@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Canvas } from "../components";
 import useResizeObserver from "../hooks/useResizeObserver";
 import { motion } from "framer-motion";
-import { vector9 } from "../assets/home";
+import { vector8, vector9 } from "../assets/home";
 import CopyToClipboard from "../components/copyToClipboard/CopyToClipboard";
 import { useTranslation } from "react-i18next";
 import { useGetPurchaseMutation } from "../api/apiSlice";
@@ -154,8 +154,8 @@ export default function ConfirmTransaction() {
                 {t("confirmationTransactionGetKey")}
               </button>
 
-              <div className="absolute w-full  max-w-[100px]  z-[1]   ">
-                <img className="w-full h-auto" src={vector9} alt="" />
+              <div className="absolute w-full right-3 top-[-30px]  max-w-[100px]  z-[1]   ">
+                <img className="w-full h-auto scale-y-[-1]" src={vector8} alt="" />
               </div>
             </form>
           </div>

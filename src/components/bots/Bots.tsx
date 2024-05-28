@@ -17,7 +17,7 @@ export default function Bots() {
     const status = (error as PatchedErrorType).status;
     throw new PatchedError(t("errorBots"), status);
   }
-
+console.log(data)
 
   const handleSetActiveCardId = (id: number) => {
     setActiveCardIds((prevIds) =>

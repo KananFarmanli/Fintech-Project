@@ -55,7 +55,7 @@ export default function HowItWorks() {
         <div className="mx-auto max-w-[1366px] w-full">
           <VerticalTimeline
             layout="2-columns"
-      
+
         
           >
             
@@ -64,7 +64,7 @@ export default function HowItWorks() {
                 position={`${(index == timelineElements.length - 1) ? "right" : " "}`}
                 key={index}
                 className=" transition-all duration-1000"
-                iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff"}}
                 iconClassName={"overflow-hidden rounded-[19%]"}
              
                 icon={<img className="absolute top-1/2 left-1/2 max-w-[unset] -translate-x-1/2 -translate-y-1/2 w-[108%]" src={element.icon} alt={t(element.key)} />}

@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoCopySharp } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
+import { getToken } from "../../utils/choosePlan";
+
+
 
 const CopyToClipboard = () => {
   const [text] = useState("0x091bA16086AF6F90d1a4360DaAE032527A2D2792");
   const [textToken] = useState<string | false>(
-    localStorage.getItem("token") || false
+    getToken() || false
   );
   const [isCopied, setIsCopied] = useState({
     value: true,
@@ -35,7 +38,7 @@ const CopyToClipboard = () => {
 
   return (
     <div className="flex flex-col gap-2 justify-start w-[350px]">
-      {textToken && (
+      {textToken ? (
         <div className="flex flex-col gap-1 text-sm">
           <p>{t("token")}:</p>
           <div className="rounded-lg border-[1px] border-blueSection p-1 bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">
@@ -52,7 +55,15 @@ const CopyToClipboard = () => {
             </button>
           </div>
         </div>
-      )}
+      ) : 
+        <div className="flex flex-col gap-1 text-sm">
+          <p>{t("token")}:</p>
+          <div className="rounded-lg border-[1px] border-redSection p-1 bg-[#dc2626a1] flex items-center justify-center gap-1  text-[12px]">
+            <p>{t("confirmationTransactionTokenNotGenerated") }</p>
+    </div>
+        </div>
+      
+      }
       <div className="flex flex-col gap-1 text-sm">
         <p>{t("walletAddress")}:</p>
         <div className="rounded-lg border-[1px] border-blueSection p-1 bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">

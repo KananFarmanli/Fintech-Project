@@ -9,10 +9,14 @@ import {
   getPromo,
   setPromo,
   valuesUppercase,
+  setToken,
 } from "../utils/choosePlan";
 import { TransactionPayloadType } from "../api/types";
 import { PatchedError, PatchedErrorType } from "../pages/ErrorBoundary";
 import { useTranslation } from "react-i18next";
+
+
+
 
 export default function useChoosePlan() {
   const navigate = useNavigate();
@@ -38,6 +42,7 @@ export default function useChoosePlan() {
     const status = (botError as PatchedErrorType).status;
     throw new PatchedError(t("errorBot"), status);
   }
+  console.log(botData)
 
   const [selectedPlan, setSelectedPlan] = useState<TransactionPayloadType>({
     botName: "",
@@ -63,6 +68,8 @@ export default function useChoosePlan() {
 
   const { ref: parentRef, size } = useResizeObserver();
 
+
+
   const handleSubscriptionCheckbox = (key: string) => {
     setSelectedPlan((prev) => ({
       ...prev,
@@ -83,7 +90,7 @@ export default function useChoosePlan() {
     const tokenPayload = valuesUppercase(dto);
     try {
       const data = await tokenHandler(tokenPayload).unwrap();
-      localStorage.setItem("token", data.token.token);
+      setToken(data.token.token);
       setNotification({
         error: false,
         message: t("choosePlanNotificationReady"),

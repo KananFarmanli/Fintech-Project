@@ -25,13 +25,13 @@ const {operations :{changeLanguage}, models:{lang}} = useStateProvider()
 
   return (
     <div className="p-1 dropdown text-[10px] cursor-pointer " onClick={toggleOptions}>
-       <div className={`link transition-all text-[10px] md:text-xs w-full h-full ${!showOptions||"mb-2"}`} >
+       <div className={`link transition-all text-[10px] w-full h-full ${!showOptions||"mb-2"}`} >
         {lang === "en" ? "En" : lang === "ru" ? "Ru" : "Tr"}
       </div>
       {showOptions && (
         <ul className="flex gap-2 flex-col items-center justify-center">
           {options.map(option => (
-            <li key={option.value} className="link text-[10px] md:text-xs cursor-pointer " onClick={() => handleLanguageChange(option.value)}>
+            <li key={option.value} className="link text-[10px] cursor-pointer " onClick={() => handleLanguageChange(option.value)}>
               {option.label}
             </li>
           ))}
