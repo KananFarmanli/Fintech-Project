@@ -14,7 +14,6 @@ export default function useHeader() {
 
   useEffect(() => {
     const lastPath = sessionStorage.getItem("lastPath");
-    console.log(lastPath, "last path ");
     const currentPath = location.pathname;
     const isHomePage =
       currentPath === "/" && location.hash === "" && location.search === "";
@@ -42,7 +41,7 @@ export default function useHeader() {
   }, [location]);
 
   return {
-    operations: { openMenu },
+    operations: { openMenu, setMenuOpen },
     models: { showBanner, isMenuOpen, headerRef },
   };
 }

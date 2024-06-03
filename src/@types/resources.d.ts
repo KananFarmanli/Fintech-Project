@@ -120,7 +120,8 @@ interface Resources {
     "botUsagestepSecondText": "Enter the bot's activation key in the appropriate field. This key is necessary to verify your account and activate all bot features.",
     "botUsagestepThirdText": "Select your preferred interface language from the provided list. This will allow you to use the bot in a language that is convenient for you.",
     "botUsagestepForthText": "All set! You can now use all the services of this bot. Enjoy the convenience and functionality of our service.",
-    "confirmationTransactionTokenNotGenerated": "It seems you haven't selected a plan, or you already have a token?"
+    "confirmationTransactionTokenNotGenerated": "It seems you haven't selected a plan, or you already have a token?",
+    "link": "Link"
   }
 }
 

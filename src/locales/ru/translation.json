@@ -60,7 +60,7 @@
   "homeAdvantagesAccessibilityPart2": "Простота использования и доступность из любого места гарантируют, что вы никогда не упустите ценную торговую возможность.",
   "homeHowItWorks": "Как это работает?",
   "homeHowItWorksSelectBot": "Выберите бота",
-  "homeHowItWorksSelectBotText": "Выберите торгового помощника, который лучше всего подходит для ваших потребностей.",
+  "homeHowItWorksSelectBotText": "Выберите торгового помощника, который лучше всего подходит для ваших потребностей и нажмите кнопку 'Выбрать план'.",
   "homeHowItWorksSubscriptionDuration": "Продолжительность подписки",
   "homeHowItWorksSubscriptionDurationText": "Выберите продолжительность вашей подписки - неделя, месяц или год",
   "homeHowItWorksSubscriptionType": "Тип подписки",
@@ -101,7 +101,7 @@
   "confirmationTransactionGetKey":"Get Key",
   "walletAddress":"Адрес кошелька",
   "network":"Сеть",
-  "confirmationTransactionDone":"Отлично! Мы отправили ключ на вашу электронную почту.",
+  "confirmationTransactionDone":"Отлично! Ваш ключ готов, и мы отправили его на вашу электронную почту. Если письмо не пришло, пожалуйста, проверьте папку 'Спам'.",
   "confirmationTransactionError":"К сожалению, что-то пошло не так",
   "token":"Токен",
   "transactionIsNotFound":"Транзакция не найдена",
@@ -120,7 +120,8 @@
   "botUsagestepSecondText":"Введите ключ активации бота в соответствующее поле. Этот ключ необходим для подтверждения вашей учетной записи и активации всех функций бота.",
   "botUsagestepThirdText":"Выберите предпочитаемый язык интерфейса из предложенного списка. Это позволит вам пользоваться ботом на удобном для вас языке.",
   "botUsagestepForthText":"Все готово! Теперь вы можете пользоваться всеми услугами данного бота. Наслаждайтесь удобством и функциональностью нашего сервиса.",
-  "confirmationTransactionTokenNotGenerated":"Кажется вы не выбрали план или у вас уже есть токен?"
+  "confirmationTransactionTokenNotGenerated":"Кажется вы не выбрали план или у вас уже есть токен?",
+  "link":"Линк"
 }
 
 

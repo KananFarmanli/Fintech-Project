@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoCopySharp } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
@@ -8,7 +8,7 @@ import { getToken } from "../../utils/choosePlan";
 
 const CopyToClipboard = () => {
   const [text] = useState("0x091bA16086AF6F90d1a4360DaAE032527A2D2792");
-  const [textToken] = useState<string | false>(
+  const [textToken, setTextToken] = useState<string | false>(
     getToken() || false
   );
   const [isCopied, setIsCopied] = useState({
@@ -36,8 +36,20 @@ const CopyToClipboard = () => {
       });
   };
 
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const token = getToken();
+      if (!token) {
+        setTextToken(false); 
+      }
+    }, 6000); 
+
+    return () => clearInterval(intervalId); 
+  }, []);
+
   return (
-    <div className="flex flex-col gap-2 justify-start w-[350px]">
+    <div className="flex flex-col gap-2 justify-start w-full xs:w-[350px]">
       {textToken ? (
         <div className="flex flex-col gap-1 text-sm">
           <p>{t("token")}:</p>
@@ -58,7 +70,7 @@ const CopyToClipboard = () => {
       ) : 
         <div className="flex flex-col gap-1 text-sm">
           <p>{t("token")}:</p>
-          <div className="rounded-lg border-[1px] border-redSection p-1 bg-[#dc2626a1] flex items-center justify-center gap-1  text-[12px]">
+          <div className="rounded-lg border-[1px] border-redSection p-1 px-[10px] bg-[#dc2626a1] flex items-center justify-center gap-1  text-[12px]">
             <p>{t("confirmationTransactionTokenNotGenerated") }</p>
     </div>
         </div>
@@ -66,7 +78,7 @@ const CopyToClipboard = () => {
       }
       <div className="flex flex-col gap-1 text-sm">
         <p>{t("walletAddress")}:</p>
-        <div className="rounded-lg border-[1px] border-blueSection p-1 bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">
+        <div className="rounded-lg border-[1px] border-blueSection p-1 px-[10px] bg-[#0040e93d] flex items-center justify-center gap-1 text-[11px] xs:text-[12px]">
           <p>{text}</p>
           <button
             className="h-full text-base"
@@ -82,7 +94,7 @@ const CopyToClipboard = () => {
       </div>
       <div className="flex flex-col gap-1 text-sm">
         <p>{t("network")}: </p>{" "}
-        <p className="rounded-lg border-[1px] border-blueSection p-1 bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">
+        <p className="rounded-lg border-[1px] border-blueSection p-1  px-[10px] bg-[#0040e93d] flex items-center justify-center gap-1  text-[12px]">
           BNB Smart Chain
         </p>
       </div>

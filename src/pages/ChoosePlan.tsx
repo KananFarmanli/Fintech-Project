@@ -10,11 +10,12 @@ export default function ChoosePlan() {
   const {
     models: { lang },
   } = useStateProvider();
+
   const { t } = useTranslation();
   const {
     operations: {
       discount,
-      botData,    
+      botData,
       promoRef,
       isBotSuccess,
       isBotLoading,
@@ -35,35 +36,35 @@ export default function ChoosePlan() {
 
   return (
     <motion.div
+    ref={parentRef}
+      style={{ width: "100%", marginBlock:"100px" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <div
-        ref={parentRef}
-        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full h-full  mb-[150px] px-[15px] space-y-[40px] flex flex-col justify-center items-center overflow-hidden"
+ 
+        className=" w-full h-full  px-[15px] gap-5 md:gap-[40px] flex flex-col justify-center items-center overflow-hidden"
       >
-        <Canvas height={size.height} width={size.width} />
+        <Canvas height={size.height} width={size.width} />  
         {isBotSuccess && (
           <>
             <div className="mx-auto max-w-[500px] sm:max-w-[unset] flex flex-col justify-center items-center gap-[20px] w-full">
-              <h1 className="text-[24px] md:text-[32px] xl:text-[44px] font-semibold leading-10 text-white">
+              <h1 className="text-[22px] md:text-2xl xl:text-3xl font-semibold leading-10 text-white">
                 {botData!.nameForWeb.replace(/_/g, " ")}
               </h1>
-              <p className="text-[18px] md:text-[22px] xl:text-[24px] font-normal leading-10 text-white text-center">
+              <p className="text-base md:text-lg xl:text-xl font-normal leading-10 text-white text-center">
                 {botData!.description[lang]}
               </p>
             </div>
 
             <label className="relative mx-auto max-w-[500px] sm:max-w-[300px] flex flex-col justify-center  w-full gap-4 ">
-              <h1 className="text-white text-[18px] md:text-[22px] xl:text-[24px] w-full text-center ">
+              <h1 className="text-white text-base md:text-lg xl:text-xl w-full text-center ">
                 {t("choosePlanPromo")}
               </h1>
               <div
                 className={` flex h-[38px] rounded overflow-hidden
-           ${!!selectedPlan.promo && " text-slate-400"}
-           
-           `}
+           ${!!selectedPlan.promo && " text-slate-400"} `}
               >
                 <input
                   ref={promoRef}
@@ -77,7 +78,7 @@ export default function ChoosePlan() {
                 <button
                   disabled={isPromoLoading}
                   onClick={handlePromoButton}
-                  className={` hover:bg-blueSection text-white transition-all px-2 py-1 h-full w-[100px] bg-[#ff0000] flex items-center justify-center outline-none ${
+                  className={` hover:bg-blueSection text-white text-sm transition-all px-2 py-1 h-full w-[100px] bg-[#ff0000] flex items-center justify-center outline-none ${
                     !isPromoLoading || "hover:bg-slate-500 bg-slate-500"
                   }`}
                 >
@@ -112,7 +113,7 @@ export default function ChoosePlan() {
                       } ring-offset-2 ring-offset-[#acd6ff]`
                     } `}
                   >
-                    <p className="text-[16px] md:text-[18px] xl:text-[20px] font-semibold leading-10 ">
+                    <p className="text-sm md:text-base xl:text-lg font-semibold leading-10 ">
                       {t(key as keyof Resources["translation"]).toUpperCase()}
                     </p>
 
@@ -125,14 +126,14 @@ export default function ChoosePlan() {
                     />
                     {isChecked && (
                       <div className="shrink-0 text-white">
-                        <CheckIcon className="h-6 w-6" />
+                        <CheckIcon className="h-4 w-4" />
                       </div>
                     )}
                   </label>
                 );
               })}
             </div>
-            <div className="w-full gap-11 flex flex-col sm:flex-row justify-center items-center ">
+            <div className="w-full gap-4 md:gap-11 flex flex-col sm:flex-row justify-center items-center ">
               {transformToArray(botData!, selectedPlan.status).term.map(
                 ([key, value], index) => {
                   const isChecked = selectedPlan.term == key || false;
@@ -151,13 +152,13 @@ export default function ChoosePlan() {
                         <span className="text-[16px] xl:text-[24px] leading-10">
                           $
                         </span>
-                        <span className="text-[32px] md:text-[44px] xl:text-[56px] font-semibold leading-10">
+                        <span className="text-[24px] md:text-[32px] xl:text-[44px] font-semibold leading-10">
                           {calculatePriceWithDiscount(
                             value as number,
                             discount
                           )}
                         </span>
-                        <span className="text-[20px] md:text-[24px] xl:text-[32px] font-normal leading-10">
+                        <span className="text-[18px] md:text-[20px] xl:text-[24px] font-normal leading-10">
                           /{t(key as keyof Resources["translation"])}
                         </span>
                       </div>
@@ -170,7 +171,7 @@ export default function ChoosePlan() {
                       />
                       {isChecked && (
                         <div className="shrink-0 text-white">
-                          <CheckIcon className="h-6 w-6" />
+                          <CheckIcon className="h-5 w-5  sm:h-4 sm:w-4   xl:h-6 xl:w-6" />
                         </div>
                       )}
                     </label>
@@ -182,7 +183,7 @@ export default function ChoosePlan() {
               <button
                 disabled={isPromoLoading && isBotLoading}
                 onClick={proceedHandler}
-                className={`rounded hover:bg-blueSection text-base text-white transition-all px-2 py-2 h-full w-full max-w-[500px] sm:w-[150px] bg-[#ff0000]  outline-none flex items-center justify-center ${
+                className={`rounded hover:bg-blueSection text-sm text-white transition-all px-2 py-2 h-full max-w-[500px] w-[150px] bg-[#ff0000]  outline-none flex items-center justify-center ${
                   !(isPromoLoading && isBotLoading) ||
                   "hover:bg-slate-500 bg-slate-500"
                 }`}

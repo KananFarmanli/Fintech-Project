@@ -9,7 +9,7 @@ export default function ContactUs() {
   return (
     <section
     id="contact-us"
-    className=" gap-24 px-[35px] relative"
+    className=" gap-24   px-[15px]  sm:px-[20px] lg:px-[35px] relative"
   >
     <div className="section__header">
         <div className="section__title  text-white">

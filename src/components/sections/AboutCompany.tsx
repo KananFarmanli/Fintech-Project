@@ -14,7 +14,7 @@ export default function AboutCompany() {
       />
 
       <div className="section-2 relative ">
-        <div className="px-6 mx-auto max-w-[1366px] w-full h-full flex items-center relative z-[1] justify-start ">
+        <div className="px-[15px] sm:px-[20px] lg:px-[35px] mx-auto max-w-[1366px] w-full h-full flex items-center relative z-[1] justify-start ">
           <div
             className="  text-white sm:text-base md:text-lg font-medium  w-full  lg:w-[50%] md:w-[70%] "
             data-aos="fade-right"

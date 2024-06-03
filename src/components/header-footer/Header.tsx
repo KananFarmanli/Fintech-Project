@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoIcon from "../../assets/logo/fintech.png";
 import useHeader from "../../hooks/useHeader";
 import { useTranslation } from "react-i18next";
 import { FaGripLines } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
 import LanguageDropdown from "../language/LanguageDropdown";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Header() {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const {
-    operations: { openMenu },
+    operations: { openMenu, setMenuOpen },
     models: { showBanner, isMenuOpen, headerRef },
   } = useHeader();
 
@@ -19,13 +20,7 @@ export default function Header() {
       ref={headerRef}
       className={`header glass z-20 w-full sticky 
       ${!isMenuOpen || "!rounded-bl-[18%] !rounded-br-[18%] "} 
-      ${
-        location.pathname == "/" && isMenuOpen
-          ? "!h-[300px] "
-          : location.pathname != "/" && isMenuOpen
-          ? "!h-[110px]"
-          : ""
-      } 
+      ${ isMenuOpen && "!h-[292px] "} 
         `}
     >
       <div
@@ -55,38 +50,45 @@ export default function Header() {
             }`}
           >
             <ul
-              className={`flex  flex-col sm:flex-row flex-wrap w-full gap-6 sm:gap-4 justify-center items-center text-[10px] md:text-[12px]   sm:mb-0 
-             ${location.pathname != "/" || "mb-4"} 
+              className={`flex  flex-col sm:flex-row flex-wrap w-full gap-6 sm:gap-[10px] md:gap-4 justify-center items-center text-[10px] md:text-[12px]   sm:mb-0 
             `}
             >
-              {location.pathname === "/" ? (
-                <>
-                  <li data-link="1" className="link reflect">
-                    <a href="#description">{t("description")}</a>
-                  </li>
-                  <li data-link="2" className="link reflect">
-                    <a href="#about-company">{t("aboutCompany")}</a>
-                  </li>
-                  <li data-link="3" className="link reflect">
-                    <a href="#advantages">{t("advantages")}</a>
-                  </li>
-                  <li data-link="4" className="link reflect">
-                    <a href="#how-it-works">{t("howItWorks")}</a>
-                  </li>
-                  <li data-link="5" className="link reflect">
-                    <Link to="/bot-usage">{t("botUsage")}</Link>
-                  </li>
-                  <li data-link="6" className="link reflect">
-                    <Link to="/buy">{t("buy")}</Link>
-                  </li>
-                </>
-              ) : (
-                <li className="link reflect text-[10px] md:text-[12px] lg:text-sm">
-                  <Link to="/">{t("back")}</Link>
-                </li>
-              )}
+              <li data-link="1" className="link reflect">
+                <a href="/#description">{t("description")}</a>
+              </li>
+              <li data-link="2" className="link reflect">
+                <a href="/#about-company">{t("aboutCompany")}</a>
+              </li>
+              <li data-link="3" className="link reflect">
+                <a href="/#advantages">{t("advantages")}</a>
+              </li>
+              <li data-link="4" className="link reflect">
+                <a href="/#how-it-works">{t("howItWorks")}</a>
+              </li>
+              <li data-link="5" className="link reflect">
+                <Link to="/bot-usage" onClick={() => setMenuOpen(false)}>
+                  {t("botUsage")}
+                </Link>
+              </li>
+              <li data-link="6" className="link reflect">
+                <Link to="/buy" onClick={() => setMenuOpen(false)}>
+                  {t("buy")}
+                </Link>
+              </li>
             </ul>
-
+            {location.pathname !== "/" && (
+              <Link
+                to={"../"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(-1);
+                  setMenuOpen(false);
+                }}
+                className={`px-1 back  cursor-pointer link  flex items-center transition-all text-[10px]  `}
+              >
+                <IoMdArrowRoundBack size={"12px"} />
+              </Link>
+            )}
             <LanguageDropdown />
           </nav>
 
@@ -95,9 +97,9 @@ export default function Header() {
             className="p-2 mx-auto menu-btn block sm:hidden"
           >
             {!isMenuOpen ? (
-              <FaGripLines className="mx-auto menu w-6" />
+              <FaGripLines className="mx-auto menu w-5" />
             ) : (
-              <FaRegWindowClose className="mx-auto menu w-6" />
+              <FaRegWindowClose className="mx-auto menu w-5" />
             )}
           </button>
         </div>

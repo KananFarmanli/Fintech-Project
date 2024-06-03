@@ -67,15 +67,16 @@ const Notification = () => {
     <div
       style={containerStyle}
       onClick={() => setIsVisible(false)}
-      className={`fixed top-[200px] left-1/2 -translate-x-1/2 z-[100] w-[500px] h-[200px] bg-[#143a72e6] text-white items-center justify-center border-[4px] rounded 
+      className={`fixed top-[200px] left-1/2 -translate-x-1/2 z-[100] w-[250px] sm:w-[350px] h-[200px] sm:h-[150px]  p-1 sm:p-2
+       bg-darkNavy text-white items-center justify-center border-[2px] rounded-lg 
       ${actionBorder}`}
     >
-      <div className="z-[200] flex flex-col gap-11 w-full h-full items-center justify-center ">
-        <div className="w-[80px]">
+      <div className="z-[200] flex flex-col gap-5 w-full h-full items-center justify-center ">
+        <div className="w-[50px]">
           <img src={actionIcon} alt="Checkmark" className="w-full h-auto" />
         </div>
         <div className=" text-center">
-          <p className="font-bold text-lg">{notification.message}</p>
+          <p className="font-light text-xs  md:text-sm">{notification.message}</p>
         </div>
       </div>
     </div>

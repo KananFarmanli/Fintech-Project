@@ -1,7 +1,7 @@
 import { SetStateAction, Dispatch, useEffect, useRef, useState } from "react";
 import { TransactionPayloadType } from "../api/types";
 import { useStateProvider } from "../context/StateProvider";
-import { determineTypePromo } from "../utils/choosePlan";
+import { determineTypePromo, getPromo, setPromo } from "../utils/choosePlan";
 import { useCheckPromoMutation } from "../api/apiSlice";
 import { useTranslation } from "react-i18next";
 type usePromoType = {
@@ -15,10 +15,8 @@ export default function usePromo({
 }: usePromoType) {
   const promoRef = useRef<HTMLInputElement | null>(null);
 
-  const {
-    operations: { setNotification },
-  } = useStateProvider();
-  const [discount, setDiscount] = useState(0);
+  const { operations: { setNotification }} = useStateProvider();
+  const [discount, setDiscount] = useState(getPromo()?.value || 0);
   const [trigger, { data, isLoading, isSuccess, error, isError }] =
     useCheckPromoMutation();
   const { t } = useTranslation();
@@ -36,7 +34,32 @@ export default function usePromo({
     if (!promoRef.current?.value) return;
     await trigger({ name: promoRef.current?.value });
   };
-  // how to correct it
+  useEffect(() => {
+    const checkPromoExpiry = () => {
+      const promoData = getPromo();
+      if (!promoData) {
+        setDiscount(0);
+        setSelectedPlan(prev => ({ ...prev, promo: "" }));
+        if (promoRef.current) {
+          promoRef.current.value = "";
+        }
+        if (intervalId !== undefined) clearInterval(intervalId);
+      }
+    };
+//
+    let intervalId:any
+
+    if (getPromo()) {
+      intervalId = setInterval(checkPromoExpiry, 60000);
+    }
+  
+    return () => {
+      if (intervalId !== undefined) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [selectedPlan.promo]);
+  
   useEffect(() => {
     if (isSuccess) {
       if (!data!.value) return;
@@ -53,7 +76,7 @@ export default function usePromo({
         ...prev,
         promo: promoRef.current!.value,
       }));
-      localStorage.setItem("promo", promoRef.current!.value);
+      setPromo(promoRef.current!.value, promo.discount)
     }
   }, [isSuccess]);
 

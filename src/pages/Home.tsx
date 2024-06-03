@@ -10,8 +10,11 @@ import {
   ChooseBots,
   Description,
 } from "../components/sections";
+import useScrollToHash from "../hooks/useScrollToHash";
+
 
 export default function Home() {
+  useScrollToHash()
   useEffect(() => {
     AOS.init({ duration: 3000 });
   }, []);

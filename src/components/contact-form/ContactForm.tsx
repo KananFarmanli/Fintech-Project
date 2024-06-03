@@ -12,10 +12,10 @@ const ContactForm = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
-        className=" flex flex-col gap-3 items-start w-[350px]  mx-auto    justify-center "
+        className=" flex flex-col gap-3 items-start w-full xs:w-[350px]  mx-auto    justify-center "
       >
         <div className="flex flex-col gap-3 w-full">
-          <label className="flex flex-col gap-2  font-semibold  text-xs sm:text-sm lg:text-base ">
+          <label className="flex flex-col gap-2  font-semibold  text-sm lg:text-base ">
             <p>
               {t("contactFormName")}: <span className="required-mark">*</span>
             </p>
@@ -25,7 +25,7 @@ const ContactForm = () => {
               className="rounded  px-2 py-1 text-black w-full"
             />
           </label>
-          <label className=" flex flex-col gap-2  font-semibold  text-xs sm:text-sm lg:text-base ">
+          <label className=" flex flex-col gap-2  font-semibold text-sm lg:text-base ">
             <p>
             {t("contactFormEmail")}: <span className="required-mark">*</span>
             </p>
@@ -37,7 +37,7 @@ const ContactForm = () => {
             />
           </label>
         </div>
-        <label className=" relative flex flex-col gap-2  text-xs font-semibold sm:text-sm lg:text-base w-full">
+        <label className=" relative flex flex-col gap-2  font-semibold text-sm lg:text-base w-full">
           <p>
           {t("contactFormMessage")}: <span className="required-mark">*</span>
           </p>

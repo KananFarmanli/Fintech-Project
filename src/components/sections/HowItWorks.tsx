@@ -52,7 +52,7 @@ export default function HowItWorks() {
         headerClass="text-blueSection font-medium"
       />
       <div className="section-4 ">
-        <div className="mx-auto max-w-[1366px] w-full">
+        <div className="mx-auto max-w-[1366px] w-full flex">
           <VerticalTimeline
             layout="2-columns"
 

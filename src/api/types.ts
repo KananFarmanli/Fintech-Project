@@ -4,6 +4,7 @@ export type DataType = {
   id: number;
   isAvailable: string;
   name: string;
+  url :string|undefined,
   nameForWeb: string;
   description: { id: string; ru: string; en: string; tr: string };
   type: {
@@ -27,7 +28,7 @@ export type TransactionPayloadType = {
   botName:string,
   status:string,
   term:string,
-  promo:string
+  promo:string 
 }
 export type PaymentPayloadType = {
   transaction:string,

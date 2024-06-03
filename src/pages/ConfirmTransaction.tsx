@@ -8,7 +8,6 @@ import CopyToClipboard from "../components/copyToClipboard/CopyToClipboard";
 import { useTranslation } from "react-i18next";
 import { useGetPurchaseMutation } from "../api/apiSlice";
 import { useStateProvider } from "../context/StateProvider";
-import Resources from "../@types/resources";
 type Inputs = {
   transaction: string;
   token: string;
@@ -33,8 +32,6 @@ export default function ConfirmTransaction() {
 
   const { t } = useTranslation();
   const onSubmit = async (data: Inputs) => {
-    console.log(data);
-    purchaseHandler(data);
     const isValid = Object.keys(errors).length === 0;
     if (!isValid) {
       return;
@@ -49,14 +46,11 @@ export default function ConfirmTransaction() {
         visible: true,
       });
     } catch (error: unknown) {
-      console.log(error);
       const typedError = error as { status: number; data: ErrorData };
       if (!typedError.data) return;
       setNotification({
         error: true,
-        message: `${t(
-          typedError.data.message as keyof Resources["translation"]
-        )}: ${typedError.status}`,
+        message:t("confirmationTransactionError"),
         success: false,
         visible: true,
       });
@@ -66,26 +60,28 @@ export default function ConfirmTransaction() {
 
   return (
     <motion.div
+    ref={parentRef}
+    style={{ width: "100%"}}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div ref={parentRef} className="mx-auto w-full h-full  text-white  py-44">
+      <div className="mx-auto w-full h-full  text-white  py-44">
         <Canvas height={size.height} width={size.width} />
 
         <div className="absolute ">
           <img src="" alt="" />
         </div>
 
-        <div className="px-6 mx-auto max-w-[1366px] w-full h-full flex flex-col items-center justify-center gap-11 ">
-          <h1 className="text-[34px]">{t("confirmationTransactionTitle")}</h1>
+        <div className="px-[15px]  sm:px-[20px] lg:px-[35px]  mx-auto max-w-[1366px] w-full h-full flex flex-col items-center justify-center gap-11 ">
+          <h1 className="text-3xl text-center">{t("confirmationTransactionTitle")}</h1>
 
           <div className="flex flex-col gap-4 items-center justify-center ">
-            <p className="text-center w-[400px]">
+            <p className="text-center w-full sm:w-[400px]">
               {t("confirmationTransactionPayment")}
             </p>
 
-            <CopyToClipboard />
+            <CopyToClipboard  />
           </div>
 
           <div
@@ -102,7 +98,7 @@ export default function ConfirmTransaction() {
             <form
               ref={formRef}
               onSubmit={handleSubmit(onSubmit)}
-              className=" get-key p-6 "
+              className=" get-key px-[15px] py-6 sm:px-[20px] lg:px-[35px]  "
             >
               <div className="flex flex-col gap-3 w-full ">
                 <label className="flex flex-col gap-2  text-sm font-semibold z-[2] ">
@@ -147,7 +143,7 @@ export default function ConfirmTransaction() {
               </div>
 
               <button
-                className={`rounded hover:bg-blueSection mt-14 text-white transition-all px-2 py-2 w-full sm:w-[150px] bg-[#ff0000] z-[2] text-sm outline-none self-center flex items-center justify-center ${
+                className={`rounded hover:bg-blueSection mt-14 text-white transition-all px-2 py-1 max-w-[500px] bg-[#ff0000] min-w-[150px] z-[2] text-sm outline-none self-center flex items-center justify-center ${
                   !isLoading || "hover:bg-slate-500 bg-slate-500"
                 }`}
               >

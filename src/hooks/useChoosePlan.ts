@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGetBotByIdQuery, useGetTokenMutation } from "../api/apiSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import useResizeObserver from "../hooks/useResizeObserver";
@@ -7,7 +7,6 @@ import { useStateProvider } from "../context/StateProvider";
 import {
   transformToArray,
   getPromo,
-  setPromo,
   valuesUppercase,
   setToken,
 } from "../utils/choosePlan";
@@ -42,13 +41,13 @@ export default function useChoosePlan() {
     const status = (botError as PatchedErrorType).status;
     throw new PatchedError(t("errorBot"), status);
   }
-  console.log(botData)
+
 
   const [selectedPlan, setSelectedPlan] = useState<TransactionPayloadType>({
     botName: "",
     term: "week",
     status: "standard",
-    promo: getPromo() || "",
+    promo: getPromo()?.promo || "" ,
   });
 
   const {
@@ -59,7 +58,6 @@ export default function useChoosePlan() {
       error: promoError,
       isError: isPromoError,
       isLoading: isPromoLoading,
-      isSuccess: isPromoSuccess,
     },
     models: { handlePromoButton },
   } = usePromo({ selectedPlan, setSelectedPlan });
@@ -99,7 +97,6 @@ export default function useChoosePlan() {
       });
       setTimeout(() => navigate("/buy"), 2000);
     } catch (error: unknown) {
-      console.log(error);
       const typedError = error as { status: number; data?: unknown };
       setNotification({
         error: true,
@@ -109,16 +106,6 @@ export default function useChoosePlan() {
       });
     }
   };
-
-  useEffect(() => {
-    if (isPromoSuccess) {
-      setSelectedPlan((prev) => ({
-        ...prev,
-        promo: promoRef.current!.value,
-      }));
-      setPromo(promoRef.current!.value);
-    }
-  }, [isPromoSuccess]);
 
   return {
     operations: {

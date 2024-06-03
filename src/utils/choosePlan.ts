@@ -10,12 +10,32 @@ export function transformToArray(data: DataType, statusDefault = "standard") {
   );
   return { term, subscription };
 }
-
-export function getPromo() {
-  return localStorage.getItem("promo");
+type getPromoType = {
+  promo: string,
+  value: number,
+  expiryTime:number
 }
-export function setPromo(promo: string) {
-  localStorage.setItem("promo", promo);
+export function getPromo(): getPromoType | null {
+  const promoData = localStorage.getItem('promo');
+  if (!promoData) {
+    return null;
+  }
+
+  const { promo, value, expiryTime } = JSON.parse(promoData);
+  const currentTime = new Date().getTime();
+
+  if (currentTime > expiryTime) {
+    localStorage.removeItem('promo');
+    return null;
+  }
+
+  return { promo, value, expiryTime };
+};
+
+export function setPromo(promo: string, value:number) {
+  const expiryTime = new Date().getTime() + 15 * 60 * 1000; 
+  const promoData = JSON.stringify({ promo,value, expiryTime });
+  localStorage.setItem('promo', promoData);
 }
 
 export function valuesUppercase(

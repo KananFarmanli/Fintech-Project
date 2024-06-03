@@ -21,7 +21,6 @@ export type PatchedErrorType = {
 export default function ErrorBoundary() {
   const { t } = useTranslation();
   const error = useRouteError() as PatchedErrorType;
-  console.log(error.message)
   let errorMessage: string | ReactNode = "";
   errorMessage = <div>{t("errorMessage")}</div>;
 
