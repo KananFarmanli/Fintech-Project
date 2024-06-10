@@ -16,6 +16,7 @@ export default function ChoosePlan() {
     operations: {
       discount,
       botData,
+      priceToPay,
       promoRef,
       isBotSuccess,
       isBotLoading,
@@ -34,19 +35,18 @@ export default function ChoosePlan() {
     },
   } = useChoosePlan();
 
+
   return (
     <motion.div
-    ref={parentRef}
-      style={{ width: "100%", marginBlock:"100px" }}
+      ref={parentRef}
+      style={{ width: "100%", marginBlock: "100px" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div
- 
-        className=" w-full h-full  px-[15px] gap-5 md:gap-[40px] flex flex-col justify-center items-center overflow-hidden"
-      >
-        <Canvas height={size.height} width={size.width} />  
+      <div className=" w-full h-full  px-[15px] gap-5 md:gap-[40px] flex flex-col justify-center items-center overflow-hidden">
+        
+        <Canvas height={size.height} width={size.width} />
         {isBotSuccess && (
           <>
             <div className="mx-auto max-w-[500px] sm:max-w-[unset] flex flex-col justify-center items-center gap-[20px] w-full">
@@ -56,8 +56,14 @@ export default function ChoosePlan() {
               <p className="text-base md:text-lg xl:text-xl font-normal leading-10 text-white text-center">
                 {botData!.description[lang]}
               </p>
+            <div className="text-white text-center">
+                <h1 className="text-lg "> {t("choosePlanInfo")}</h1>
+                <p>
+                {t("choosePlanInfoText1")}
+                </p>
+                <p> {t("choosePlanInfoText2")}</p>
+              </div>
             </div>
-
             <label className="relative mx-auto max-w-[500px] sm:max-w-[300px] flex flex-col justify-center  w-full gap-4 ">
               <h1 className="text-white text-base md:text-lg xl:text-xl w-full text-center ">
                 {t("choosePlanPromo")}
@@ -179,6 +185,9 @@ export default function ChoosePlan() {
                 }
               )}
             </div>
+            <div className="text-white">
+         { t("choosePlanPrice")} {priceToPay}$. 
+            </div>
             <div className="w-full flex items-center justify-center  ">
               <button
                 disabled={isPromoLoading && isBotLoading}
@@ -193,6 +202,10 @@ export default function ChoosePlan() {
             </div>
           </>
         )}
+        <div className="flex flex-col gap-5 text-white w-1/2 max-w-[1366px] text-center">
+
+
+        </div>
       </div>
     </motion.div>
   );

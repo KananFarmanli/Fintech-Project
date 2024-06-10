@@ -71,6 +71,7 @@ export default function usePromo({
         message: promo.message,
         success: false,
         visible: true,
+        manuallyClose:false
       }));
       setSelectedPlan((prev) => ({
         ...prev,

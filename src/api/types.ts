@@ -48,8 +48,14 @@ export type TransactionResponseType = {
   },
   expiredDate: string;
 }
-export type PaymentResponseType = {
+
+interface KeyInfo {
+  key: string;
+
 }
+
+
+export type PaymentResponseType =Record<'key', KeyInfo[]> 
 
 
 

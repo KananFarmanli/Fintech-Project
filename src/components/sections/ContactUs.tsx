@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ContactForm from '../contact-form/ContactForm';
 import { numCircle5, vector8, vector9 } from '../../assets/home/'
 import Numbering from "../Numbering/Numbering";
+import { Link } from "react-router-dom";
 export default function ContactUs() {
     const { t } = useTranslation();
   return (
@@ -24,7 +25,7 @@ export default function ContactUs() {
           </div>
           <div className="flex flex-col items-start justify-center text-left text-sm sm:text-xl">
             <h1>Telegram:</h1>
-            <p className=" text-sm sm:text-xl">@MeKenangelo</p>
+            <Link to={"https://t.me/ShMurad200"} className=" text-sm sm:text-xl hover:text-black">@Fintech support</Link>
           </div>
         </div>
         <span className="text-[20px]  md:text-[30px] text-white font-semibold text-center ">

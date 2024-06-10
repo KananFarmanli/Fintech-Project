@@ -49,6 +49,7 @@ export default function useContactForm() {
             message: t("contactFormNotificationSuccessful"),
             success: true,
             visible: true,
+            manuallyClose:false
           }));
           setLoading(false);
         },
@@ -60,6 +61,7 @@ export default function useContactForm() {
             message: t("contactFormNotificationError"),
             success: false,
             visible: true,
+            manuallyClose:false
           }));
           setLoading(false);
         }

@@ -18,6 +18,7 @@ export type NotificationType = {
   message: string
   error: boolean;
   success: boolean;
+  manuallyClose:boolean
 };
 
 type Operations = {
@@ -37,6 +38,7 @@ const INIT_STATE: AppState = {
     message: "Notification",
     error: false,
     success: false,
+    manuallyClose:false
   },
 };
 
@@ -59,7 +61,8 @@ export default function StateProvider({ children }: StateProviderProps) {
     visible:false,
     message:"Notification",
     error:false,
-    success:false,
+    success: false,
+    manuallyClose:false
 
   });
   const [lang, setLang] = useState<keyof typeof Lang>(Lang.en);

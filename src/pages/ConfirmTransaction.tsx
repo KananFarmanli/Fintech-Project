@@ -8,6 +8,7 @@ import CopyToClipboard from "../components/copyToClipboard/CopyToClipboard";
 import { useTranslation } from "react-i18next";
 import { useGetPurchaseMutation } from "../api/apiSlice";
 import { useStateProvider } from "../context/StateProvider";
+import Resources from "../@types/resources";
 type Inputs = {
   transaction: string;
   token: string;
@@ -38,30 +39,41 @@ export default function ConfirmTransaction() {
     }
     const botPayload = data;
     try {
-      await purchaseHandler(botPayload).unwrap();
+      const data = await purchaseHandler(botPayload).unwrap();
       setNotification({
         error: false,
-        message: t("confirmationTransactionDone"),
+        message: t("confirmationTransactionDone", { key: data.key[0].key }),
         success: true,
         visible: true,
+        manuallyClose: true,
       });
     } catch (error: unknown) {
       const typedError = error as { status: number; data: ErrorData };
-      if (!typedError.data) return;
-      setNotification({
-        error: true,
-        message:t("confirmationTransactionError"),
-        success: false,
-        visible: true,
-      });
+      if (!typedError.data) {
+        setNotification({
+          error: true,
+          message: t("confirmationTransactionError"),
+          success: false,
+          visible: true,
+          manuallyClose: false,
+        });
+      } else {
+        setNotification({
+          error: true,
+          message: t(typedError.data.message as keyof Resources["translation"]),
+          success: false,
+          visible: true,
+          manuallyClose: false,
+        });
+      }
     }
   };
   const { ref: parentRef, size } = useResizeObserver();
 
   return (
     <motion.div
-    ref={parentRef}
-    style={{ width: "100%"}}
+      ref={parentRef}
+      style={{ width: "100%" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -74,14 +86,16 @@ export default function ConfirmTransaction() {
         </div>
 
         <div className="px-[15px]  sm:px-[20px] lg:px-[35px]  mx-auto max-w-[1366px] w-full h-full flex flex-col items-center justify-center gap-11 ">
-          <h1 className="text-3xl text-center">{t("confirmationTransactionTitle")}</h1>
+          <h1 className="text-3xl text-center">
+            {t("confirmationTransactionTitle")}
+          </h1>
 
           <div className="flex flex-col gap-4 items-center justify-center ">
             <p className="text-center w-full sm:w-[400px]">
               {t("confirmationTransactionPayment")}
             </p>
 
-            <CopyToClipboard  />
+            <CopyToClipboard />
           </div>
 
           <div
@@ -90,9 +104,14 @@ export default function ConfirmTransaction() {
           >
             <div className="w-full md:w-1/2  flex  flex-col justify-between gap-5 h-full">
               <p>{t("confirmationTransactionSaveTransaction")}</p>
-
-              <p>{t("confirmationTransactionTokenPrecaution")}</p>
-              <p>{t("confirmationTransactionSafety")}</p>
+              <div>
+                <h1 className="font-semibold "> {t("confirmationTransactionTokenGeneration")}</h1>
+                <p>{t("confirmationTransactionTokenGenerationText")}</p>
+              </div>
+              <div>
+              <h1 className="font-semibold ">  {t("confirmationTransactionKeyRetrieval")}</h1>
+                <p>{t("confirmationTransactionKeyRetrievalText")}</p>
+              </div>
             </div>
 
             <form
@@ -151,7 +170,11 @@ export default function ConfirmTransaction() {
               </button>
 
               <div className="absolute w-full right-3 top-[-30px]  max-w-[100px]  z-[1]   ">
-                <img className="w-full h-auto scale-y-[-1]" src={vector8} alt="" />
+                <img
+                  className="w-full h-auto scale-y-[-1]"
+                  src={vector8}
+                  alt=""
+                />
               </div>
             </form>
           </div>
@@ -160,3 +183,4 @@ export default function ConfirmTransaction() {
     </motion.div>
   );
 }
+

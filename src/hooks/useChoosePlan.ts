@@ -9,6 +9,7 @@ import {
   getPromo,
   valuesUppercase,
   setToken,
+  calculatePriceWithDiscount,
 } from "../utils/choosePlan";
 import { TransactionPayloadType } from "../api/types";
 import { PatchedError, PatchedErrorType } from "../pages/ErrorBoundary";
@@ -94,6 +95,7 @@ export default function useChoosePlan() {
         message: t("choosePlanNotificationReady"),
         success: true,
         visible: true,
+        manuallyClose:false
       });
       setTimeout(() => navigate("/buy"), 2000);
     } catch (error: unknown) {
@@ -103,9 +105,18 @@ export default function useChoosePlan() {
         message: `${t("choosePlanNotificationError")}: ${typedError.status}`,
         success: false,
         visible: true,
+        manuallyClose:false
       });
     }
   };
+
+  let priceToPay = 0;
+
+  if (isBotSuccess) {
+    const selectedTerm = transformToArray(botData!, selectedPlan.status).term.find(([key]) => key === selectedPlan.term);
+    const price = selectedTerm ? selectedTerm[1] : 0;
+    priceToPay = calculatePriceWithDiscount(+price, discount);
+  }
 
   return {
     operations: {
@@ -121,6 +132,7 @@ export default function useChoosePlan() {
       isPromoError,
       isPromoLoading,
       selectedPlan,
+      priceToPay,
     },
     models: {
       proceedHandler,
